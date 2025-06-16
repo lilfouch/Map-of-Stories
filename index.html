@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stories of Noordereiland: A Living Map</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
+    <style>
+        #map { height: 600px; width: 100%; }
+    </style>
+</head>
+<body>
+    <h1>Stories of Noordereiland: A Living Map</h1>
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script>
+        var map = L.map('map').setView([51.9135, 4.4930], 15);
+
+        var apiKey = 'VQRCQrp3rLwmCsNoMzLp';
+
+        // MapTiler Topographic tiles
+        L.tileLayer(`https://api.maptiler.com/maps/topo/{z}/{x}/{y}.png?key=${apiKey}`, {
+            attribution: '&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a> & OpenStreetMap contributors'
+        }).addTo(map);
+
+        // All story locations
+        var locations = [
+            { 
+                name: "Story 1",
+                lat: 51.913071, lng: 4.494916,
+                story: "IEDEREEN AAN BOORD is a volunteer initiative of Noordereiland's residents. Together with neighbourhood partners and residents, we devise projects that contribute to the island's living environment."
+            },
+            { 
+                name: "Story 2",
+                lat: 51.91063, lng: 4.48970,
+                story: "I live on the top floor with a dark flat roof. In the summer, it can go up to 49°C. Years ago I could handle, but now it starts to be difficult. - Anonymous, 67yo."
+            },
+            { 
+                name: "Story 3",
+                lat: 51.911128997802734, lng: 4.490637302398682,
+                story: "When it's hot, it's nice and cool in my basement. Poor insulation makes it hot in the house quickly when the outside temperature goes up. My balcony is full of (green) plants, which makes the balcony less hot. Ventilation and wind give cooling, as do good curtains and heat-resistant film. A fan that gives cooling. Sit outside on the quay in the wind and under the trees in front of the door.<br><br>If it's cold, put on thick jumpers, thick socks, and slippers. Again, that lack of insulation makes it cold in the house quickly. The basement is nice and warm now. Stove on, but only in the room, no CV (yet). IR panels to heat the rest. With a winter duvet, nice and warm. - Hans"
+            },
+            { 
+                name: "Story 4",
+                lat: 51.910239, lng: 4.488469,
+                story: "Inside the house, it gets too hot after several hot days. It is an old house with no air conditioning or blinds. At the quay, it is usually windy, and the big tree there provides some shade.<br><br>With a folding chair, drinks, and a good book, it's good to relax there. Usually, a familiar person also always comes along with me. Just saying hello is then nice and sufficient. - Ellen"
+            },
+            { 
+                name: "Story 5",
+                lat: 51.916895, lng: 4.496059,
+                story: "While cycling across the Willems Bridge to Noordereiland, I always get very hot, then along asphalt often waiting for the red traffic light. green or shade or water spray would help! - Thijmen"
+            },
+            { 
+                name: "Story 6",
+                lat: 51.912906, lng: 4.493882,
+                story: "It is nice here, but even if there is a bit of shade, it is very warm when I play with my friends. So I go get an ice cream at the Spar! - a child playing outside"
+            },
+            { 
+                name: "Story 7",
+                lat: 51.914897, lng: 4.497270,
+                story: "For me it is one of the warmest spots. I like to play outside with my friends, but it is sometimes too warm, so I go home and I go outside later in the evening. - Ayalea"
+            },
+            { 
+                name: "Story 8",
+                lat: 51.912936, lng: 4.495424,
+                story: "In my apartment it can also be very warm. But I am lucky, I have a basement, and it is cooler over there. The building also has private interior courtyard for its residents, so sometimes i see a few neighbors reading a book. But the floor is made of concrete and we only have one tree so... it is not optimal. But better than nothing! - Lieselot"
+            },
+            { 
+                name: "Story 9",
+                lat: 51.912428, lng: 4.494009,
+                story: "Me I am fine in my apartment, but I think that an old neighbour of mine is spending quite a few days in the basement! I see light coming out of his basement door during a big part of warm days. - Anonymous"
+            }
+        ];
+
+        // Add markers to map
+        locations.forEach(loc => {
+            L.marker([loc.lat, loc.lng]).addTo(map)
+                .bindPopup(`<b>${loc.name}</b><br>${loc.story}`);
+        });
+
+    </script>
+</body>
+</html>
